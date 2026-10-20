@@ -1,0 +1,23 @@
+/* Generated from tokens.json by scripts/build.mjs. Do not edit by hand. */
+
+:root {
+  --mbar-navy-600: #134a7c;
+  --mbar-navy-700: #0b2a4f;
+  --mbar-navy-800: #0b1f3a;
+  --mbar-navy-900: #07152a;
+  --mbar-navy-950: #050f1f;
+  --mbar-ocean-50: #effaff;
+  --mbar-ocean-100: #dbeff9;
+  --mbar-ocean-200: #bce3f6;
+  --mbar-ocean-300: #8eceeb;
+  --mbar-ocean-400: #4daedb;
+  --mbar-ocean-500: #0d8ac5;
+  --mbar-ocean-600: #0072a5;
+  --mbar-ocean-700: #005e8a;
+  --mbar-ocean-800: #00496b;
+  --mbar-ocean-900: #0b3042;
+  --mbar-ocean-950: #0c222d;
+  --mbar-logo: #192340;
+  --mbar-gradient: linear-gradient(60deg, var(--mbar-navy-900), var(--mbar-navy-700), var(--mbar-navy-600));
+  --mbar-gradient-deep: linear-gradient(135deg, var(--mbar-navy-950), var(--mbar-navy-700));
+}

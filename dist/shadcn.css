@@ -1,0 +1,55 @@
+/* Generated from tokens.json by scripts/build.mjs. Do not edit by hand. */
+
+:root {
+  --background: #effaff;
+  --foreground: #0b1f3a;
+  --card: #ffffff;
+  --card-foreground: #0b1f3a;
+  --popover: #ffffff;
+  --popover-foreground: #0b1f3a;
+  --primary: #0072a5;
+  --primary-foreground: #ffffff;
+  --secondary: #dbeff9;
+  --secondary-foreground: #0b1f3a;
+  --muted: #dbeff9;
+  --muted-foreground: #4a5b70;
+  --accent: #dbeff9;
+  --accent-foreground: #0b1f3a;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #d0dbe6;
+  --input: #c9d5e1;
+  --ring: #0072a5;
+  --chart-1: #0072a5;
+  --chart-2: #4a5b70;
+  --chart-3: #0b1f3a;
+  --chart-4: #4daedb;
+  --chart-5: #8eceeb;
+}
+
+.dark {
+  --background: #07152a;
+  --foreground: #e6eef6;
+  --card: #0b1f3a;
+  --card-foreground: #e6eef6;
+  --popover: #0b1f3a;
+  --popover-foreground: #e6eef6;
+  --primary: #4daedb;
+  --primary-foreground: #050f1f;
+  --secondary: #0b2a4f;
+  --secondary-foreground: #e6eef6;
+  --muted: #0b2a4f;
+  --muted-foreground: #93a7bd;
+  --accent: #0b2a4f;
+  --accent-foreground: #e6eef6;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #1d3655;
+  --input: #22405f;
+  --ring: #4daedb;
+  --chart-1: #4daedb;
+  --chart-2: #93a7bd;
+  --chart-3: #bce3f6;
+  --chart-4: #0072a5;
+  --chart-5: #134a7c;
+}
