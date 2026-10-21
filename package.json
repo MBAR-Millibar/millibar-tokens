@@ -1,18 +1,19 @@
 {
   "name": "@millibar/tokens",
-  "version": "1.0.0",
-  "description": "Millibar brand colours (navy + ocean) for every Millibar project.",
+  "version": "1.1.0",
+  "description": "Millibar brand tokens (colours, type, spacing, radius) and logo files for every Millibar project.",
   "license": "UNLICENSED",
   "private": true,
   "type": "module",
-  "files": ["dist", "tokens.json"],
+  "files": ["dist", "logos", "tokens.json"],
   "exports": {
     "./tokens.css": "./dist/tokens.css",
     "./tailwind.css": "./dist/tailwind.css",
     "./shadcn.css": "./dist/shadcn.css",
     "./shadcn-hsl.css": "./dist/shadcn-hsl.css",
     "./tailwind-preset": "./dist/tailwind-preset.cjs",
-    "./tokens.json": "./tokens.json"
+    "./tokens.json": "./tokens.json",
+    "./logos/*": "./logos/*"
   },
   "scripts": {
     "build": "node scripts/build.mjs"

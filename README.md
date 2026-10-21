@@ -1,6 +1,6 @@
 # @millibar/tokens
 
-Millibar brand colours, shared by every Millibar project (app.millibar.io, instructors, centers, divers, Millibar Nitrox, Academy).
+Millibar brand tokens and logo files, shared by every Millibar project (app.millibar.io, instructors, centers, divers, Millibar Nitrox, Academy).
 
 - **Navy** for brand surfaces: headers, hero sections, CTA bands, footers, dark mode. Main tone `navy-800` `#0b1f3a`; gradient `#07152a → #0b2a4f → #134a7c`.
 - **Ocean** for actions: buttons, links, focus. Primary `ocean-600` `#0072a5`.
@@ -10,8 +10,8 @@ Millibar brand colours, shared by every Millibar project (app.millibar.io, instr
 ## Install
 
 ```bash
-pnpm add github:MBAR-Millibar/millibar-tokens#v1.0.0
-# or: npm install github:MBAR-Millibar/millibar-tokens#v1.0.0
+pnpm add github:MBAR-Millibar/millibar-tokens#v1.1.0
+# or: npm install github:MBAR-Millibar/millibar-tokens#v1.1.0
 ```
 
 Pin a tag so a project only changes colour when you bump it.
@@ -32,4 +32,11 @@ Pin a tag so a project only changes colour when you bump it.
 - `shadcn.css` / `shadcn-hsl.css`: the shadcn variables (`--background`, `--primary`, …) for light and `.dark`, in hex (v4) or HSL triplets (v3).
 - `tailwind-preset.cjs` (v3): the same colours and gradients.
 
-Wider brand guidelines (typography, spacing, logo use) belong to the Millibar Design Kit (WEB-32).
+Since v1.1.0, the Design Kit foundations (MD-8). Every name carries `mbar`, so nothing replaces a project's own defaults:
+
+- Fonts: Geist for text, Geist Mono for labels and figures. The package names them; each project still loads them (`next/font` `Geist` / `Geist_Mono`, or Google Fonts).
+  - `tokens.css`: `--mbar-font-sans`, `--mbar-font-mono`, `--mbar-space-{1,2,3,4,6,8,12,16,24}`, `--mbar-radius-{sm,md,lg,full}`, and `.mbar-text-{display,h1,h2,h3,body-lg,body,small,button,label,readout,code}` classes.
+  - `tailwind.css` (v4) and the v3 preset: `font-mbar-sans`, `font-mbar-mono`, `text-mbar-*` (size, line height, weight, tracking), `rounded-mbar-*`. Spacing follows Tailwind's 4px steps, so there are no extra spacing utilities.
+- Logos in `logos/`: `millibar-{logo,lockup,wordmark,symbol}` in `-navy` (#192340, for light grounds), `-white` (for navy and photography), `-black`, and a plain file that takes `currentColor` when inlined. Import as `@millibar/tokens/logos/millibar-lockup-navy.svg`.
+
+The type scale, spacing and radius are proposed in the Design Kit and change only by a version bump. Usage rules (clear space, minimum sizes, voice, the open Bujnowski concept directions) live in the Millibar Design Kit (MD-8).

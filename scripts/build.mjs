@@ -38,21 +38,50 @@ const scaleVars = (prefix) =>
     .flatMap((scale) => Object.entries(tokens[scale]).map(([step, hex]) => `  ${prefix}${scale}-${step}: ${hex};`))
     .join('\n');
 
-// 1. Plain CSS variables, usable anywhere.
+// Design Kit foundations (MD-8): fonts, text styles, spacing, radius. All names are
+// prefixed with "mbar" so they add to a project's theme without replacing its defaults.
+const lines = (entries) => entries.map(([name, value]) => `  ${name}: ${value};`).join('\n');
+const fontVars = (prefix) => lines(Object.entries(tokens.font).map(([k, v]) => [`${prefix}${k}`, v]));
+const spaceVars = (prefix) => lines(Object.entries(tokens.space).map(([k, v]) => [`${prefix}${k}`, v]));
+const radiusVars = (prefix) => lines(Object.entries(tokens.radius).map(([k, v]) => [`${prefix}${k}`, v]));
+const textDecls = (style, fontVar) =>
+  [
+    `font-family: var(${fontVar}${style.font})`,
+    `font-size: ${style.size}`,
+    `line-height: ${style.lineHeight}`,
+    `font-weight: ${style.weight}`,
+    style.tracking && `letter-spacing: ${style.tracking}`,
+    style.uppercase && 'text-transform: uppercase',
+    style.tabular && 'font-variant-numeric: tabular-nums',
+  ].filter(Boolean);
+
+// 1. Plain CSS variables, usable anywhere, plus .mbar-text-* classes for the type scale.
 const tokensCss = `${header}
 :root {
 ${scaleVars('--mbar-')}
   --mbar-logo: ${tokens.logo};
   --mbar-gradient: ${gradient(tokens.gradient.brand, '--mbar-')};
   --mbar-gradient-deep: ${gradient(tokens.gradient.deep, '--mbar-')};
+${fontVars('--mbar-font-')}
+${spaceVars('--mbar-space-')}
+${radiusVars('--mbar-radius-')}
 }
+${Object.entries(tokens.text)
+  .map(([name, style]) => `\n.mbar-text-${name} {\n${textDecls(style, '--mbar-font-').map((d) => `  ${d};`).join('\n')}\n}`)
+  .join('\n')}
 `;
 
-// 2. Tailwind v4 theme: navy-* / ocean-* colours and a bg-mbar-gradient utility.
+// 2. Tailwind v4 theme: navy-* / ocean-* colours, font-mbar-*, text-mbar-*, rounded-mbar-*,
+// a bg-mbar-gradient utility and a text-mbar-* style per type token.
 const tailwindCss = `${header}
 @theme {
 ${scaleVars('--color-')}
   --color-mbar-logo: ${tokens.logo};
+${fontVars('--font-mbar-')}
+${radiusVars('--radius-mbar-')}
+${Object.entries(tokens.text)
+  .map(([name, s]) => `  --text-mbar-${name}: ${s.size};\n  --text-mbar-${name}--line-height: ${s.lineHeight};\n  --text-mbar-${name}--font-weight: ${s.weight};${s.tracking ? `\n  --text-mbar-${name}--letter-spacing: ${s.tracking};` : ''}`)
+  .join('\n')}
 }
 
 @utility bg-mbar-gradient {
@@ -89,6 +118,15 @@ module.exports = {
         navy: ${JSON.stringify(tokens.navy, null, 2).replace(/\n/g, '\n        ')},
         ocean: ${JSON.stringify(tokens.ocean, null, 2).replace(/\n/g, '\n        ')},
         'mbar-logo': '${tokens.logo}',
+      },
+      fontFamily: {
+${Object.entries(tokens.font).map(([k, v]) => `        'mbar-${k}': ${JSON.stringify(v.split(/,\s*/).map((f) => f.replace(/"/g, '')))},`).join('\n')}
+      },
+      fontSize: {
+${Object.entries(tokens.text).map(([k, s]) => `        'mbar-${k}': ['${s.size}', { lineHeight: '${s.lineHeight}', fontWeight: '${s.weight}'${s.tracking ? `, letterSpacing: '${s.tracking}'` : ''} }],`).join('\n')}
+      },
+      borderRadius: {
+${Object.entries(tokens.radius).map(([k, v]) => `        'mbar-${k}': '${v}',`).join('\n')}
       },
       backgroundImage: {
         'mbar-gradient': 'linear-gradient(${tokens.gradient.brand.angle}, ${tokens.gradient.brand.stops.map(resolve).join(', ')})',
