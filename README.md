@@ -10,11 +10,13 @@ Millibar brand tokens and logo files, shared by every Millibar project (app.mill
 ## Install
 
 ```bash
-pnpm add github:MBAR-Millibar/millibar-tokens#v1.1.0
-# or: npm install github:MBAR-Millibar/millibar-tokens#v1.1.0
+npm install https://github.com/MBAR-Millibar/millibar-tokens/archive/refs/tags/v1.1.0.tar.gz
+# or: pnpm add https://github.com/MBAR-Millibar/millibar-tokens/archive/refs/tags/v1.1.0.tar.gz
 ```
 
 Pin a tag so a project only changes colour when you bump it.
+
+**Don't install with `github:MBAR-Millibar/millibar-tokens#…`.** npm writes that into the lockfile as a `git+ssh://` URL, and deploy servers (Forge) only have a deploy key for their own repo, so `npm ci` fails and no assets get built ("Vite manifest not found"). The release tarball above is plain HTTPS and needs no key.
 
 ## Use
 
