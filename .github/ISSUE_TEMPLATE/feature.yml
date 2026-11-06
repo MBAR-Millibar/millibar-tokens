@@ -1,0 +1,16 @@
+name: 💡 Feature request
+description: A new token, output format or logo variant.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What do you want to do?
+      description: The problem in your project, not the solution yet.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Idea
+      description: How the package could support it (a token, a utility, a file…).
